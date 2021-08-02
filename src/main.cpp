@@ -6,7 +6,7 @@
 
 int main(){
 
-    int numObjects = 10;
+    int numObjects = 100;
     int valRange = 100;
 
     int *frequencies = util::randomFrequencies(numObjects, valRange);
@@ -18,4 +18,5 @@ int main(){
     int n = freqs.size();
     node *root = new node;
     root = huffmanTree(root, freqs, n);
+    traverseHuffmanTree(root);
 }

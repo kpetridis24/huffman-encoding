@@ -11,6 +11,7 @@ struct node{
     node *left;
     node *right;
     int frequency;
+    uint8_t code;
 };
 
 namespace util{

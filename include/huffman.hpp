@@ -53,4 +53,18 @@ node *huffmanTree(node *root, std::vector <node*> frequencies, int n){
 }
 
 
+void traverseHuffmanTree(node *root){
+    
+    if(root->left != NULL){
+        root->left->code = 0;
+        traverseHuffmanTree(root->left);
+    }
+
+    if(root->right != NULL){
+        root->right->code = 1;
+        traverseHuffmanTree(root->right);
+    }
+}
+
+
 #endif
