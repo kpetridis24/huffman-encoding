@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <cstdbool>
 #include <time.h>
 #include <vector>
 
@@ -11,7 +12,7 @@ struct node{
     node *left;
     node *right;
     int frequency;
-    uint8_t code;
+    int code;
 };
 
 namespace util{
@@ -24,10 +25,16 @@ namespace util{
     }
 
 
-    void printVector(std::vector <node*> vec){
+    void printVectorParam(std::vector <node*> vec){
 
         for (const auto& i: vec)
             std::cout << i->frequency << ' ';
+    }
+
+    void printVector(std::vector <int> vec){
+
+        for (const auto& i: vec)
+            std::cout << i << ' ';
     }
  
     /* This function takes last element as pivot, places

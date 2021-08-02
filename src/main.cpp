@@ -6,8 +6,8 @@
 
 int main(){
 
-    int numObjects = 100;
-    int valRange = 100;
+    int numObjects = 10;
+    int valRange = 10;
 
     int *frequencies = util::randomFrequencies(numObjects, valRange);
     std::vector <node*> freqs = sortObjects(frequencies, numObjects);
@@ -17,6 +17,7 @@ int main(){
 
     int n = freqs.size();
     node *root = new node;
-    root = huffmanTree(root, freqs, n);
+    root = huffmanTree(freqs, n);
     traverseHuffmanTree(root);
+
 }

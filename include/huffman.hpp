@@ -21,46 +21,38 @@ std::vector <node*> sortObjects(int *frequencies, int len){
 }
 
 
-// Frequencies must be already sorted.
-node *huffmanTree(node *root, std::vector <node*> frequencies, int n){
+node *huffmanTree(std::vector <node*> frequencies, int n){
 
-    //std::cout<<std::endl;
-    if(n <= 1) return root;
-    
-    node *newNode = new node;
-    newNode->frequency = 0;
+    while(frequencies.size() > 1){
 
-    newNode->left = frequencies.at(0);
-    newNode->frequency += frequencies.at(0)->frequency;
-    frequencies.erase(frequencies.begin());
-    newNode->right = frequencies.at(0);
-    newNode->frequency += frequencies.at(0)->frequency;
-    frequencies.erase(frequencies.begin());
+        node *newNode = new node;
+        newNode->frequency = 0;
 
-    //std::cout<<"Before"<<std::endl;
-    //util::printVector(frequencies);
+        newNode->left = frequencies.at(0);
+        newNode->frequency += frequencies.at(0)->frequency;
+        frequencies.erase(frequencies.begin());
+        newNode->right = frequencies.at(0);
+        newNode->frequency += frequencies.at(0)->frequency;
+        frequencies.erase(frequencies.begin());
 
-    //std::cout<<"Target="<<newNode->frequency<<std::endl;
-    int newNodePosition = util::linearSearch(frequencies, newNode->frequency);//linearSearch(frequencies, newNode->frequency);
-    //std::cout<<"pos="<<newNodePosition<<std::endl;
-    frequencies.insert(frequencies.begin() + newNodePosition, newNode);
+        int newNodePosition = util::linearSearch(frequencies, newNode->frequency);
+        frequencies.insert(frequencies.begin() + newNodePosition, newNode);
+    }
 
-    //std::cout<<"After"<<std::endl;
-    //util::printVector(frequencies);
-
-    huffmanTree(newNode, frequencies, frequencies.size());
-    return newNode;
+    return frequencies.at(0);
 }
 
 
 void traverseHuffmanTree(node *root){
     
     if(root->left != NULL){
+        //std::cout<<"left of "<<root->frequency<<" is "<<root->left->frequency<<std::endl;
         root->left->code = 0;
         traverseHuffmanTree(root->left);
     }
 
     if(root->right != NULL){
+        //std::cout<<"right of "<<root->frequency<<" is "<<root->right->frequency<<std::endl;
         root->right->code = 1;
         traverseHuffmanTree(root->right);
     }
